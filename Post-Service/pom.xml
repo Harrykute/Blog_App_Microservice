@@ -73,6 +73,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- 1️⃣ Actuator: Needed for tracing & metrics -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- Micrometer Tracing (replaces Spring Sleuth) -->
+		<dependency>
+		    <groupId>io.micrometer</groupId>
+		    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<!-- Zipkin Reporter -->
+		<dependency>
+		    <groupId>io.zipkin.reporter2</groupId>
+		    <artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<!-- Spring Cloud Version Management -->

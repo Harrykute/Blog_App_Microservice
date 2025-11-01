@@ -8,10 +8,10 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.blogapp.postservice</groupId>
-	<artifactId>Spring-Cloud-Config-Server</artifactId>
+	<groupId>com.blogapp.configserver</groupId>
+	<artifactId>Blog-App-Config-Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring-Cloud-Config-Server</name>
+	<name>Blog-App-Config-Server</name>
 	<description>this is Spring-Cloud-Config-Server for blog app microservice. This centrilized project</description>
 	<url/>
 	<licenses>
