@@ -1,5 +1,7 @@
 package com.blogapp.postservice.entities;
 
+import java.io.Serializable;
+
 import com.blogapp.postservice.feign.entities.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,7 +15,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class PostLike {
+public class PostLike implements Serializable{
 
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)

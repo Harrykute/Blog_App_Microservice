@@ -3,6 +3,9 @@ package com.blogapp.postservice.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,8 @@ import com.blogapp.postservice.entities.Post;
 import com.blogapp.postservice.service.PostLikeService;
 import com.blogapp.postservice.service.PostService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/posts/")
@@ -34,7 +39,7 @@ public class PostRestController {
   private PostLikeService postLikeService;
   
 	@PostMapping("/{categoryId}/create")
-	public ResponseEntity<Post> createPost(@RequestBody Post postDto,@PathVariable Integer categoryId){
+	public ResponseEntity<Post> createPost(@Valid @RequestBody Post postDto,@PathVariable Integer categoryId){
 		Long userId = postDto.getUserId(); 
 		Post createdPostDto = this.postService.createPost(postDto, userId, categoryId);
 		return new ResponseEntity<Post>(createdPostDto,HttpStatus.CREATED); 

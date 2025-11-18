@@ -18,6 +18,8 @@ import com.blogapp.postservice.apiresponse.ApiResponse;
 import com.blogapp.postservice.entities.Category;
 import com.blogapp.postservice.service.CategoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
@@ -26,7 +28,7 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	@PostMapping("/")
-	public ResponseEntity<Category> createCategory(@RequestBody Category categoryDto){
+	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category categoryDto){
 		Category createdCategory = this.categoryService.createCategory(categoryDto);
 		return new ResponseEntity<Category>(createdCategory,HttpStatus.CREATED); 
 	}

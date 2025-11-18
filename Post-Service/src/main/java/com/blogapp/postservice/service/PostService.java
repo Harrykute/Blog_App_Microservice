@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -50,6 +53,7 @@ public class PostService {
 	        return newPost;
 	}
 
+    @CachePut(value = "posts", key = "#postId")
 	public Post updatePost(Post postPayload,Integer postId) {
 		
         Post post = this.postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post","postId",postId));
@@ -63,18 +67,21 @@ public class PostService {
 		return updatePost;
 	}
 
+    @CacheEvict(value = "posts", key = "#postId")
 	public void deletePost(Integer postId) {
 		
         Post post = this.postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post","postId",postId));
         this.postRepo.delete(post);
 	}
 
+	 @Cacheable(value = "posts", key = "#postId")
 	public Post getSinglePost(Integer postId) {
-
         Post post = this.postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post","postId",postId));
+             post.getComments();
 		return post;
 	}
 
+	 @Cacheable(value = "posts", key = "allPost")
 	public List<Post> getPosts(Integer pageNumber,Integer pageSize) {
 		Pageable p = PageRequest.of(pageNumber-1,pageSize);
 		Page<Post> pagePost = this.postRepo.findAll(p);

@@ -1,5 +1,7 @@
 package com.blogapp.postservice.entities;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Table(name="comments")
 @Getter
 @Setter
-public class Comment {
+public class Comment implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
