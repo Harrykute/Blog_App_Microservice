@@ -11,5 +11,4 @@ public interface UserService {
 	
 	 @GetMapping("/api/users/{id}")
 	 User getUserById(@PathVariable Long id);
-
 }
